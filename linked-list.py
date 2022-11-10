@@ -29,15 +29,15 @@ class LinkedList:
                 count += 1
         return count
 
-    def addWord(self, palavra):
-        if len(palavra.strip()) == 0:
+    def addWord(self, word):
+        if len(word.strip()) == 0:
             raise Exception("Not possible to add empty word")
 
-        elif self.size - self.getLength() < len(palavra):
+        elif self.size - self.getLength() < len(word):
             raise Exception("Low memory")
 
         array = []
-        for char in palavra:
+        for char in word:
             word = Node(char)
             array.append(word)
 
@@ -56,28 +56,28 @@ class LinkedList:
                     break
         return
 
-    def popWord(self, palavra):
-        word = ""
+    def popWord(self, word):
+        current_word = ""
         pointers = []
         pointerHead = None
 
         for i in self.heads:
-            word += i.char
+            current_word += i.char
             pointers.append(i)
             pointer = i.next
             pointers.append(pointer)
             while pointer.next:
-                word += pointer.char
+                current_word += pointer.char
                 pointer = pointer.next
                 pointers.append(pointer)
             if pointer.next is None:
-                word += pointer.char
-            if word == palavra:
-                word = ""
+                current_word += pointer.char
+            if current_word == word:
+                current_word = ""
                 pointerHead = i
                 break
             else:
-                word = ""
+                current_word = ""
                 pointers = []
 
         if len(pointers) > 0:
@@ -89,18 +89,18 @@ class LinkedList:
             self.heads.remove(pointerHead)
             return
 
-    def readWord(self, palavra):
+    def readWord(self, word):
         current_word = ""
 
         for i in range(len(self.heads)):
-            if self.heads[i].char == palavra[0]:
+            if self.heads[i].char == word[0]:
                 pointer = self.heads[i].next
                 current_word += self.heads[i].char
                 while pointer:
                     current_word += pointer.char
                     pointer = pointer.next
 
-                if current_word == palavra:
+                if current_word == word:
                     return (f"The word {current_word} was found")
                 else:
                     raise ValueError("this word not exist in list")
@@ -125,4 +125,4 @@ list.addWord("Alagoas")
 
 list.popWord("São Paulo")
 list.addWord("Santa Catarina")
-print(list.readWord("Santa Catarina"))
+list.viewList()
