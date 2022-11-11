@@ -1,12 +1,12 @@
 from linkedList import LinkedList
 
 list = LinkedList(32)
-list.bootStrapList()
+list.bootStrap_list()
 
-list.addWord("Pernambuco")
-list.addWord("São Paulo")
-list.addWord("Alagoas")
+list.add_word("Pernambuco")
+list.add_word("São Paulo")
+list.add_word("Alagoas")
 
-list.popWord("São Paulo")
-list.addWord("Santa Catarina")
-list.viewList()
+list.pop_word("São Paulo")
+list.add_word("Santa Catarina")
+list.view_list()
