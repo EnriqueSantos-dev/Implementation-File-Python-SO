@@ -105,7 +105,7 @@ class LinkedList:
                     pointer = pointer.next
 
                 if current_word == word:
-                    return (f"The word {current_word} was found")
+                    print(f"The word {current_word} was found")
                 else:
                     raise ValueError("this word not exist in list")
 
