@@ -7,12 +7,12 @@ class LinkedList:
         self.vector = []
         self.heads = []
 
-    def bootStrapList(self):
+    def bootStrap_list(self):
         for i in range(0, self.max_size):
             self.vector.append(None)
         return
 
-    def viewList(self):
+    def view_list(self):
        for i in self.vector:
             if i is not None:
                 print(f"[ {i} ] \n")
@@ -21,20 +21,30 @@ class LinkedList:
                 print(f"[ {i} ]")
 
 
-    def getLength(self):
+    def get_length(self):
         count = 0
         for i in range(0, len(self.vector)):
             if self.vector[i] is not None and self.vector[i].char is not None:
                 count += 1
         return count
 
-    def addWord(self, word):
+    def add_word(self, word):
         if len(word.strip()) == 0:
             raise Exception("Not possible to add empty word")
 
-        elif self.getLength() + len(word) >= self.max_size:
+        elif self.get_length() + len(word) >= self.max_size:
             raise Exception("Low memory")
 
+        nodes = self.transform_letter_to_node(word)
+
+        for x in range(0, len(nodes)):
+            for i in range(0, len(self.vector)):
+                if self.vector[i] is None or self.vector[i].char is None:
+                    self.vector[i] = nodes[x]
+                    break
+        return
+
+    def transform_letter_to_node(self, word):
         array = []
         for char in word:
             word = Node(char)
@@ -48,14 +58,9 @@ class LinkedList:
 
         self.heads.append(array[0])
 
-        for x in range(0, len(array)):
-            for i in range(0, len(self.vector)):
-                if self.vector[i] is None or self.vector[i].char is None:
-                    self.vector[i] = array[x]
-                    break
-        return
+        return array
 
-    def popWord(self, word):
+    def pop_word(self, word):
         current_word = ""
         pointers = []
         pointerHead = None
@@ -88,7 +93,7 @@ class LinkedList:
             self.heads.remove(pointerHead)
             return
 
-    def readWord(self, word):
+    def read_word(self, word):
         current_word = ""
 
         for i in range(len(self.heads)):
@@ -104,7 +109,7 @@ class LinkedList:
                 else:
                     raise ValueError("this word not exist in list")
 
-    def getAllWords(self):
+    def get_all_words(self):
         for i in self.heads:
             pointer = i.next
             print(f"[ {i.char} ]\n")
