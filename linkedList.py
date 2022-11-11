@@ -1,15 +1,14 @@
 from node import Node
 
 class LinkedList:
-    def __init__(self):
-        self.size = None
+    def __init__(self, max_size: int):
+        self.max_size = max_size
         self.head = None
         self.vector = []
         self.heads = []
 
-    def bootStrapList(self, quant):
-        self.size = quant
-        for i in range(0, quant):
+    def bootStrapList(self):
+        for i in range(0, self.max_size):
             self.vector.append(None)
         return
 
@@ -33,7 +32,7 @@ class LinkedList:
         if len(word.strip()) == 0:
             raise Exception("Not possible to add empty word")
 
-        elif self.size - self.getLength() < len(word):
+        elif self.getLength() + len(word) >= self.max_size:
             raise Exception("Low memory")
 
         array = []
@@ -116,13 +115,3 @@ class LinkedList:
                 pointer = pointer.next
 
 
-list = LinkedList()
-list.bootStrapList(32)
-
-list.addWord("Pernambuco")
-list.addWord("São Paulo")
-list.addWord("Alagoas")
-
-list.popWord("São Paulo")
-list.addWord("Santa Catarina")
-list.viewList()
